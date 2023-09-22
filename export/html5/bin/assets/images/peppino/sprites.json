@@ -1,5 +1,11 @@
 {
     "sprites": [
-        "spr_player_idle"
+        "spr_player_idle",
+        "spr_player_move",
+        "spr_player_jump",
+
+        "spr_player_mach1",
+        "spr_player_mach",
+        "spr_player_mach4"
     ]
 }

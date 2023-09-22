@@ -5,7 +5,6 @@ import flixel.graphics.atlas.FlxAtlas;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.math.FlxPoint;
 import haxe.Json;
-import js.html.AbortController;
 import openfl.utils.Assets;
 import tjson.TJSON;
 

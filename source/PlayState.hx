@@ -15,10 +15,17 @@ class PlayState extends FlxState
 	override public function create()
 	{
 		super.create();
-		add(stage = new FlxSprite(0, FlxG.height / 2).makeGraphic(FlxG.width, Std.int(FlxG.height / 2)));
+		var bg:FlxSprite = new FlxSprite(0, 0).makeGraphic(FlxG.width, FlxG.height, FlxColor.GRAY);
+		bg.scrollFactor.set(0, 0);
+		add(bg);
+		add(stage = new FlxSprite(0, FlxG.height / 2).makeGraphic(FlxG.width * 4, Std.int(FlxG.height / 2)));
 		stage.immovable = true;
 		add(peppino = new Peppino(0, 0));
 
+		FlxG.worldBounds.set(0, 0, FlxG.width * 4, FlxG.height);
+
+		FlxG.camera.follow(peppino);
+		FlxG.camera.followLerp = 30 / FlxG.updateFramerate;
 		// FlxG.camera.follow(peppino);
 	}
 
