@@ -55,7 +55,7 @@ class Peppino extends FlxSprite
 		animation.addByPrefix('mach_stop//transition_', 'spr_player_machslidestart', 24, false);
 		animation.addByPrefix('mach_stop_', 'spr_player_machslide_', 24, true);
 
-		animation.addByPrefix('idle//transition-SKID ', 'spr_player_machslideend', 24, false);
+		animation.addByPrefix('idle//transition-SKID', 'spr_player_machslideend', 24, false);
 		width = 37;
 
 		height = 60;
@@ -128,6 +128,7 @@ class Peppino extends FlxSprite
 
 			var state = Std.string(prevState);
 			trace('$animationName//transition-$state');
+			// TODO: somethings wrong here and idk what it is, help
 			if (animation.getByName('$animationName//transition-$state') != null)
 			{
 				animToPlay = '$animationName//transition-$state';
