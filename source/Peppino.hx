@@ -46,6 +46,8 @@ class Peppino extends FlxSprite
 		// animations
 		// the rest arent really loaded because flxatlasframes has a limit and is kept in sprites.json instead
 		animation.addByPrefix('idle_', 'spr_player_idle_', 24);
+		animation.addByPrefix('idle//transition-$SKID', 'spr_player_machslideend', 24, false);
+
 		animation.addByPrefix('walk', 'spr_player_move', 24);
 		animation.addByPrefix('jump', 'spr_player_jump', 24, false);
 
@@ -55,7 +57,7 @@ class Peppino extends FlxSprite
 		animation.addByPrefix('mach_stop//transition_', 'spr_player_machslidestart', 24, false);
 		animation.addByPrefix('mach_stop_', 'spr_player_machslide_', 24, true);
 
-		animation.addByPrefix('idle//transition-SKID', 'spr_player_machslideend', 24, false);
+		animation.addByPrefix('mach_jump', 'spr_player_secondjump2', 24, false);
 		width = 37;
 
 		height = 60;
@@ -87,8 +89,7 @@ class Peppino extends FlxSprite
 
 		fsm.transitions.add(Fall, Idle, (_) -> isTouching(DOWN));
 
-		fsm.transitions.add(Mach, Idle, (_) -> FlxG.keys.released.SHIFT && isTouching(DOWN) && getMachSpeed() == 0);
-		fsm.transitions.add(Mach, Skid, (_) -> FlxG.keys.released.SHIFT && isTouching(DOWN) && getMachSpeed() == 1);
+		fsm.transitions.add(Mach, Skid, (_) -> FlxG.keys.released.SHIFT && isTouching(DOWN));
 
 		fsm.transitions.add(Skid, Idle, (_) -> movespeed <= 120);
 
@@ -136,6 +137,7 @@ class Peppino extends FlxSprite
 				hasTransitioned = true;
 			}
 		}
+
 		animation.play(animToPlay, force);
 	}
 
@@ -165,14 +167,9 @@ class Peppino extends FlxSprite
 			return walkMovement;
 	}
 
-	public function getMachAnimation()
-	{
-		return 'mach_1';
-	}
-
 	public function getMachSpeed()
 	{
-		if (movespeed > 850)
+		if (movespeed > 1100)
 			return 1;
 
 		return 0;
@@ -184,7 +181,6 @@ class Peppino extends FlxSprite
 			movespeed += 25;
 
 		var turn = (flipX ? -1 : 1);
-
 		velocity.x = movespeed * turn;
 	}
 }
@@ -271,21 +267,15 @@ class Mach extends FlxFSMState<Peppino>
 			peppino.playAnim('mach_2');
 	}
 
-	override function exit(peppino:Peppino)
-	{
-		peppino.machrunning = false;
-		if (peppino.getMachSpeed() == 0)
-		{
-			peppino.movespeed = 350;
-			peppino.velocity.x = 0;
-		}
-	}
+	override function exit(peppino:Peppino) {}
 }
 
 class Skid extends FlxFSMState<Peppino>
 {
 	override function enter(peppino:Peppino, fsm:FlxFSM<Peppino>)
 	{
+		peppino.machrunning = false;
+
 		peppino.changeState(SKID);
 		peppino.playAnim('mach_stop');
 	}

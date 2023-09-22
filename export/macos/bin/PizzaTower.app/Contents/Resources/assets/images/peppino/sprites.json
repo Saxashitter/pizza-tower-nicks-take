@@ -10,6 +10,8 @@
 
         "spr_player_machslide",
         "spr_player_machslidestart",
-        "spr_player_machslideend"
+        "spr_player_machslideend",
+
+        "spr_player_secondjump1"
     ]
 }

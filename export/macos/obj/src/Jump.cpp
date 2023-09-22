@@ -52,15 +52,15 @@
 #include <flixel/util/IFlxPooled.h>
 #endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_5f7dcdfa86ce2af6_212_new,"Jump","new",0xba673100,"Jump.new","Peppino.hx",212,0x23086929)
-HX_LOCAL_STACK_FRAME(_hx_pos_5f7dcdfa86ce2af6_217_enter,"Jump","enter",0x5eab35b8,"Jump.enter","Peppino.hx",217,0x23086929)
-HX_LOCAL_STACK_FRAME(_hx_pos_5f7dcdfa86ce2af6_224_update,"Jump","update",0xf9104969,"Jump.update","Peppino.hx",224,0x23086929)
-HX_LOCAL_STACK_FRAME(_hx_pos_5f7dcdfa86ce2af6_239_exit,"Jump","exit",0x59ff227e,"Jump.exit","Peppino.hx",239,0x23086929)
+HX_DEFINE_STACK_FRAME(_hx_pos_5f7dcdfa86ce2af6_209_new,"Jump","new",0xba673100,"Jump.new","Peppino.hx",209,0x23086929)
+HX_LOCAL_STACK_FRAME(_hx_pos_5f7dcdfa86ce2af6_214_enter,"Jump","enter",0x5eab35b8,"Jump.enter","Peppino.hx",214,0x23086929)
+HX_LOCAL_STACK_FRAME(_hx_pos_5f7dcdfa86ce2af6_221_update,"Jump","update",0xf9104969,"Jump.update","Peppino.hx",221,0x23086929)
+HX_LOCAL_STACK_FRAME(_hx_pos_5f7dcdfa86ce2af6_236_exit,"Jump","exit",0x59ff227e,"Jump.exit","Peppino.hx",236,0x23086929)
 
 void Jump_obj::__construct(){
-            	HX_STACKFRAME(&_hx_pos_5f7dcdfa86ce2af6_212_new)
-HXLINE( 214)		this->isHoldingSpace = true;
-HXLINE( 212)		super::__construct();
+            	HX_STACKFRAME(&_hx_pos_5f7dcdfa86ce2af6_209_new)
+HXLINE( 211)		this->isHoldingSpace = true;
+HXLINE( 209)		super::__construct();
             	}
 
 Dynamic Jump_obj::__CreateEmpty() { return new Jump_obj; }
@@ -83,48 +83,48 @@ bool Jump_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void Jump_obj::enter( ::Dynamic _tmp_peppino, ::flixel::addons::util::FlxFSM _tmp_fsm){
-            	HX_STACKFRAME(&_hx_pos_5f7dcdfa86ce2af6_217_enter)
-HXLINE( 218)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
-HXDLIN( 218)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
-HXDLIN( 218)		peppino->changeState(::States_obj::JUMP_dyn());
-HXLINE( 219)		peppino->playAnim(HX_("jump",ee,c4,69,46),null());
-HXLINE( 220)		peppino->velocity->set_y(( (Float)(-400) ));
+            	HX_STACKFRAME(&_hx_pos_5f7dcdfa86ce2af6_214_enter)
+HXLINE( 215)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
+HXDLIN( 215)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
+HXDLIN( 215)		peppino->changeState(::States_obj::JUMP_dyn());
+HXLINE( 216)		peppino->playAnim(HX_("jump",ee,c4,69,46),null());
+HXLINE( 217)		peppino->velocity->set_y(( (Float)(-400) ));
             	}
 
 
 void Jump_obj::update(Float elapsed, ::Dynamic _tmp_peppino, ::flixel::addons::util::FlxFSM _tmp_fsm){
-            	HX_STACKFRAME(&_hx_pos_5f7dcdfa86ce2af6_224_update)
-HXLINE( 225)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
-HXDLIN( 225)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
-HXDLIN( 225)		int speed = 825;
-HXLINE( 227)		 ::Dynamic movement = peppino->getMovementType();
-HXLINE( 228)		movement();
-HXLINE( 230)		bool _hx_tmp;
-HXDLIN( 230)		bool _hx_tmp1;
-HXDLIN( 230)		if (this->isHoldingSpace) {
-HXLINE( 230)			 ::flixel::input::keyboard::FlxKeyList _this = ( ( ::flixel::input::keyboard::FlxKeyList)(::flixel::FlxG_obj::keys->released) );
-HXDLIN( 230)			_hx_tmp1 = _this->keyManager->checkStatusUnsafe(32,_this->status);
+            	HX_STACKFRAME(&_hx_pos_5f7dcdfa86ce2af6_221_update)
+HXLINE( 222)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
+HXDLIN( 222)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
+HXDLIN( 222)		int speed = 825;
+HXLINE( 224)		 ::Dynamic movement = peppino->getMovementType();
+HXLINE( 225)		movement();
+HXLINE( 227)		bool _hx_tmp;
+HXDLIN( 227)		bool _hx_tmp1;
+HXDLIN( 227)		if (this->isHoldingSpace) {
+HXLINE( 227)			 ::flixel::input::keyboard::FlxKeyList _this = ( ( ::flixel::input::keyboard::FlxKeyList)(::flixel::FlxG_obj::keys->released) );
+HXDLIN( 227)			_hx_tmp1 = _this->keyManager->checkStatusUnsafe(32,_this->status);
             		}
             		else {
-HXLINE( 230)			_hx_tmp1 = false;
+HXLINE( 227)			_hx_tmp1 = false;
             		}
-HXDLIN( 230)		if (_hx_tmp1) {
-HXLINE( 230)			_hx_tmp = (peppino->velocity->y < 0);
+HXDLIN( 227)		if (_hx_tmp1) {
+HXLINE( 227)			_hx_tmp = (peppino->velocity->y < 0);
             		}
             		else {
-HXLINE( 230)			_hx_tmp = false;
+HXLINE( 227)			_hx_tmp = false;
             		}
-HXDLIN( 230)		if (_hx_tmp) {
-HXLINE( 232)			peppino->velocity->set_y(( (Float)(0) ));
-HXLINE( 233)			this->isHoldingSpace = false;
+HXDLIN( 227)		if (_hx_tmp) {
+HXLINE( 229)			peppino->velocity->set_y(( (Float)(0) ));
+HXLINE( 230)			this->isHoldingSpace = false;
             		}
             	}
 
 
 void Jump_obj::exit( ::Dynamic _tmp_peppino){
-            	HX_STACKFRAME(&_hx_pos_5f7dcdfa86ce2af6_239_exit)
-HXDLIN( 239)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
-HXDLIN( 239)		this->isHoldingSpace = true;
+            	HX_STACKFRAME(&_hx_pos_5f7dcdfa86ce2af6_236_exit)
+HXDLIN( 236)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
+HXDLIN( 236)		this->isHoldingSpace = true;
             	}
 
 

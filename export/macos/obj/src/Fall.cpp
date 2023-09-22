@@ -28,13 +28,13 @@
 #include <flixel/util/IFlxDestroyable.h>
 #endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_05d466a740473583_243_new,"Fall","new",0xe1fa730d,"Fall.new","Peppino.hx",243,0x23086929)
-HX_LOCAL_STACK_FRAME(_hx_pos_05d466a740473583_246_enter,"Fall","enter",0x031cd505,"Fall.enter","Peppino.hx",246,0x23086929)
-HX_LOCAL_STACK_FRAME(_hx_pos_05d466a740473583_253_update,"Fall","update",0x380a0d7c,"Fall.update","Peppino.hx",253,0x23086929)
+HX_DEFINE_STACK_FRAME(_hx_pos_05d466a740473583_240_new,"Fall","new",0xe1fa730d,"Fall.new","Peppino.hx",240,0x23086929)
+HX_LOCAL_STACK_FRAME(_hx_pos_05d466a740473583_243_enter,"Fall","enter",0x031cd505,"Fall.enter","Peppino.hx",243,0x23086929)
+HX_LOCAL_STACK_FRAME(_hx_pos_05d466a740473583_250_update,"Fall","update",0x380a0d7c,"Fall.update","Peppino.hx",250,0x23086929)
 
 void Fall_obj::__construct(){
-            	HX_STACKFRAME(&_hx_pos_05d466a740473583_243_new)
-HXDLIN( 243)		super::__construct();
+            	HX_STACKFRAME(&_hx_pos_05d466a740473583_240_new)
+HXDLIN( 240)		super::__construct();
             	}
 
 Dynamic Fall_obj::__CreateEmpty() { return new Fall_obj; }
@@ -57,19 +57,19 @@ bool Fall_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void Fall_obj::enter( ::Dynamic _tmp_peppino, ::flixel::addons::util::FlxFSM _tmp_fsm){
-            	HX_STACKFRAME(&_hx_pos_05d466a740473583_246_enter)
-HXLINE( 247)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
-HXDLIN( 247)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
-HXDLIN( 247)		peppino->changeState(::States_obj::FALL_dyn());
-HXLINE( 248)		peppino->playAnim(HX_("fall",7b,bc,b5,43),null());
+            	HX_STACKFRAME(&_hx_pos_05d466a740473583_243_enter)
+HXLINE( 244)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
+HXDLIN( 244)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
+HXDLIN( 244)		peppino->changeState(::States_obj::FALL_dyn());
+HXLINE( 245)		peppino->playAnim(HX_("fall",7b,bc,b5,43),null());
             	}
 
 
 void Fall_obj::update(Float elapsed, ::Dynamic _tmp_peppino, ::flixel::addons::util::FlxFSM _tmp_fsm){
-            	HX_STACKFRAME(&_hx_pos_05d466a740473583_253_update)
-HXDLIN( 253)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
-HXDLIN( 253)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
-HXDLIN( 253)		peppino->walkMovement();
+            	HX_STACKFRAME(&_hx_pos_05d466a740473583_250_update)
+HXDLIN( 250)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
+HXDLIN( 250)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
+HXDLIN( 250)		peppino->walkMovement();
             	}
 
 

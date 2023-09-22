@@ -34,14 +34,14 @@
 #include <flixel/util/IFlxPooled.h>
 #endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_c959e7b1b6f2cb47_284_new,"Skid","new",0x9b1a2905,"Skid.new","Peppino.hx",284,0x23086929)
-HX_LOCAL_STACK_FRAME(_hx_pos_c959e7b1b6f2cb47_287_enter,"Skid","enter",0x0c0ff8fd,"Skid.enter","Peppino.hx",287,0x23086929)
-HX_LOCAL_STACK_FRAME(_hx_pos_c959e7b1b6f2cb47_293_update,"Skid","update",0x03d66284,"Skid.update","Peppino.hx",293,0x23086929)
-HX_LOCAL_STACK_FRAME(_hx_pos_c959e7b1b6f2cb47_300_exit,"Skid","exit",0x15e52ed9,"Skid.exit","Peppino.hx",300,0x23086929)
+HX_DEFINE_STACK_FRAME(_hx_pos_c959e7b1b6f2cb47_273_new,"Skid","new",0x9b1a2905,"Skid.new","Peppino.hx",273,0x23086929)
+HX_LOCAL_STACK_FRAME(_hx_pos_c959e7b1b6f2cb47_276_enter,"Skid","enter",0x0c0ff8fd,"Skid.enter","Peppino.hx",276,0x23086929)
+HX_LOCAL_STACK_FRAME(_hx_pos_c959e7b1b6f2cb47_284_update,"Skid","update",0x03d66284,"Skid.update","Peppino.hx",284,0x23086929)
+HX_LOCAL_STACK_FRAME(_hx_pos_c959e7b1b6f2cb47_291_exit,"Skid","exit",0x15e52ed9,"Skid.exit","Peppino.hx",291,0x23086929)
 
 void Skid_obj::__construct(){
-            	HX_STACKFRAME(&_hx_pos_c959e7b1b6f2cb47_284_new)
-HXDLIN( 284)		super::__construct();
+            	HX_STACKFRAME(&_hx_pos_c959e7b1b6f2cb47_273_new)
+HXDLIN( 273)		super::__construct();
             	}
 
 Dynamic Skid_obj::__CreateEmpty() { return new Skid_obj; }
@@ -64,36 +64,37 @@ bool Skid_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void Skid_obj::enter( ::Dynamic _tmp_peppino, ::flixel::addons::util::FlxFSM _tmp_fsm){
-            	HX_STACKFRAME(&_hx_pos_c959e7b1b6f2cb47_287_enter)
-HXLINE( 288)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
-HXDLIN( 288)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
-HXDLIN( 288)		peppino->changeState(::States_obj::SKID_dyn());
-HXLINE( 289)		peppino->playAnim(HX_("mach_stop",48,72,3e,26),null());
+            	HX_STACKFRAME(&_hx_pos_c959e7b1b6f2cb47_276_enter)
+HXLINE( 277)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
+HXDLIN( 277)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
+HXDLIN( 277)		peppino->machrunning = false;
+HXLINE( 279)		peppino->changeState(::States_obj::SKID_dyn());
+HXLINE( 280)		peppino->playAnim(HX_("mach_stop",48,72,3e,26),null());
             	}
 
 
 void Skid_obj::update(Float elapsed, ::Dynamic _tmp_peppino, ::flixel::addons::util::FlxFSM _tmp_fsm){
-            	HX_STACKFRAME(&_hx_pos_c959e7b1b6f2cb47_293_update)
-HXLINE( 294)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
-HXDLIN( 294)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
-HXDLIN( 294)		 ::Peppino peppino1 = peppino;
-HXDLIN( 294)		peppino1->movespeed = (peppino1->movespeed - ( (Float)(30) ));
-HXLINE( 295)		int turn;
-HXDLIN( 295)		if (peppino->flipX) {
-HXLINE( 295)			turn = -1;
+            	HX_STACKFRAME(&_hx_pos_c959e7b1b6f2cb47_284_update)
+HXLINE( 285)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
+HXDLIN( 285)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
+HXDLIN( 285)		 ::Peppino peppino1 = peppino;
+HXDLIN( 285)		peppino1->movespeed = (peppino1->movespeed - ( (Float)(30) ));
+HXLINE( 286)		int turn;
+HXDLIN( 286)		if (peppino->flipX) {
+HXLINE( 286)			turn = -1;
             		}
             		else {
-HXLINE( 295)			turn = 1;
+HXLINE( 286)			turn = 1;
             		}
-HXLINE( 296)		peppino->velocity->set_x((peppino->movespeed * ( (Float)(turn) )));
+HXLINE( 287)		peppino->velocity->set_x((peppino->movespeed * ( (Float)(turn) )));
             	}
 
 
 void Skid_obj::exit( ::Dynamic _tmp_peppino){
-            	HX_STACKFRAME(&_hx_pos_c959e7b1b6f2cb47_300_exit)
-HXLINE( 301)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
-HXDLIN( 301)		peppino->movespeed = ( (Float)(350) );
-HXLINE( 302)		peppino->velocity->set_x(( (Float)(0) ));
+            	HX_STACKFRAME(&_hx_pos_c959e7b1b6f2cb47_291_exit)
+HXLINE( 292)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
+HXDLIN( 292)		peppino->movespeed = ( (Float)(350) );
+HXLINE( 293)		peppino->velocity->set_x(( (Float)(0) ));
             	}
 
 

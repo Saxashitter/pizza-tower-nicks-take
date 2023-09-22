@@ -33,24 +33,18 @@
 #ifndef INCLUDED_flixel_animation_FlxBaseAnimation
 #include <flixel/animation/FlxBaseAnimation.h>
 #endif
-#ifndef INCLUDED_flixel_math_FlxBasePoint
-#include <flixel/math/FlxBasePoint.h>
-#endif
 #ifndef INCLUDED_flixel_util_IFlxDestroyable
 #include <flixel/util/IFlxDestroyable.h>
 #endif
-#ifndef INCLUDED_flixel_util_IFlxPooled
-#include <flixel/util/IFlxPooled.h>
-#endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_f52883f39b731738_257_new,"Mach","new",0x8b8b008b,"Mach.new","Peppino.hx",257,0x23086929)
-HX_LOCAL_STACK_FRAME(_hx_pos_f52883f39b731738_260_enter,"Mach","enter",0x9c0a3e03,"Mach.enter","Peppino.hx",260,0x23086929)
-HX_LOCAL_STACK_FRAME(_hx_pos_f52883f39b731738_267_update,"Mach","update",0x6ed882be,"Mach.update","Peppino.hx",267,0x23086929)
-HX_LOCAL_STACK_FRAME(_hx_pos_f52883f39b731738_274_exit,"Mach","exit",0x8830ec93,"Mach.exit","Peppino.hx",274,0x23086929)
+HX_DEFINE_STACK_FRAME(_hx_pos_f52883f39b731738_254_new,"Mach","new",0x8b8b008b,"Mach.new","Peppino.hx",254,0x23086929)
+HX_LOCAL_STACK_FRAME(_hx_pos_f52883f39b731738_257_enter,"Mach","enter",0x9c0a3e03,"Mach.enter","Peppino.hx",257,0x23086929)
+HX_LOCAL_STACK_FRAME(_hx_pos_f52883f39b731738_264_update,"Mach","update",0x6ed882be,"Mach.update","Peppino.hx",264,0x23086929)
+HX_LOCAL_STACK_FRAME(_hx_pos_f52883f39b731738_270_exit,"Mach","exit",0x8830ec93,"Mach.exit","Peppino.hx",270,0x23086929)
 
 void Mach_obj::__construct(){
-            	HX_STACKFRAME(&_hx_pos_f52883f39b731738_257_new)
-HXDLIN( 257)		super::__construct();
+            	HX_STACKFRAME(&_hx_pos_f52883f39b731738_254_new)
+HXDLIN( 254)		super::__construct();
             	}
 
 Dynamic Mach_obj::__CreateEmpty() { return new Mach_obj; }
@@ -73,41 +67,36 @@ bool Mach_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void Mach_obj::enter( ::Dynamic _tmp_peppino, ::flixel::addons::util::FlxFSM _tmp_fsm){
-            	HX_STACKFRAME(&_hx_pos_f52883f39b731738_260_enter)
-HXLINE( 261)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
-HXDLIN( 261)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
-HXDLIN( 261)		peppino->changeState(::States_obj::MACH_dyn());
-HXLINE( 262)		peppino->machrunning = true;
-HXLINE( 263)		peppino->playAnim(HX_("mach_1",2b,f6,83,b0),null());
+            	HX_STACKFRAME(&_hx_pos_f52883f39b731738_257_enter)
+HXLINE( 258)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
+HXDLIN( 258)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
+HXDLIN( 258)		peppino->changeState(::States_obj::MACH_dyn());
+HXLINE( 259)		peppino->machrunning = true;
+HXLINE( 260)		peppino->playAnim(HX_("mach_1",2b,f6,83,b0),null());
             	}
 
 
 void Mach_obj::update(Float elapsed, ::Dynamic _tmp_peppino, ::flixel::addons::util::FlxFSM _tmp_fsm){
-            	HX_STACKFRAME(&_hx_pos_f52883f39b731738_267_update)
-HXLINE( 268)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
-HXDLIN( 268)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
-HXDLIN( 268)		peppino->machMovement();
-HXLINE( 269)		bool _hx_tmp;
-HXDLIN( 269)		if ((peppino->getMachSpeed() == 1)) {
-HXLINE( 269)			_hx_tmp = (peppino->animation->_curAnim->name != HX_("mach_2",2c,f6,83,b0));
+            	HX_STACKFRAME(&_hx_pos_f52883f39b731738_264_update)
+HXLINE( 265)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
+HXDLIN( 265)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
+HXDLIN( 265)		peppino->machMovement();
+HXLINE( 266)		bool _hx_tmp;
+HXDLIN( 266)		if ((peppino->getMachSpeed() == 1)) {
+HXLINE( 266)			_hx_tmp = (peppino->animation->_curAnim->name != HX_("mach_2",2c,f6,83,b0));
             		}
             		else {
-HXLINE( 269)			_hx_tmp = false;
+HXLINE( 266)			_hx_tmp = false;
             		}
-HXDLIN( 269)		if (_hx_tmp) {
-HXLINE( 270)			peppino->playAnim(HX_("mach_2",2c,f6,83,b0),null());
+HXDLIN( 266)		if (_hx_tmp) {
+HXLINE( 267)			peppino->playAnim(HX_("mach_2",2c,f6,83,b0),null());
             		}
             	}
 
 
 void Mach_obj::exit( ::Dynamic _tmp_peppino){
-            	HX_STACKFRAME(&_hx_pos_f52883f39b731738_274_exit)
-HXLINE( 275)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
-HXDLIN( 275)		peppino->machrunning = false;
-HXLINE( 276)		if ((peppino->getMachSpeed() == 0)) {
-HXLINE( 278)			peppino->movespeed = ( (Float)(350) );
-HXLINE( 279)			peppino->velocity->set_x(( (Float)(0) ));
-            		}
+            	HX_STACKFRAME(&_hx_pos_f52883f39b731738_270_exit)
+HXDLIN( 270)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
             	}
 
 

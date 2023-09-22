@@ -50,13 +50,13 @@
 #include <flixel/util/IFlxPooled.h>
 #endif
 
-HX_DEFINE_STACK_FRAME(_hx_pos_11808598d1a4a54e_191_new,"Idle","new",0x02841e26,"Idle.new","Peppino.hx",191,0x23086929)
-HX_LOCAL_STACK_FRAME(_hx_pos_11808598d1a4a54e_194_enter,"Idle","enter",0x99ba385e,"Idle.enter","Peppino.hx",194,0x23086929)
-HX_LOCAL_STACK_FRAME(_hx_pos_11808598d1a4a54e_200_update,"Idle","update",0x6b239803,"Idle.update","Peppino.hx",200,0x23086929)
+HX_DEFINE_STACK_FRAME(_hx_pos_11808598d1a4a54e_188_new,"Idle","new",0x02841e26,"Idle.new","Peppino.hx",188,0x23086929)
+HX_LOCAL_STACK_FRAME(_hx_pos_11808598d1a4a54e_191_enter,"Idle","enter",0x99ba385e,"Idle.enter","Peppino.hx",191,0x23086929)
+HX_LOCAL_STACK_FRAME(_hx_pos_11808598d1a4a54e_197_update,"Idle","update",0x6b239803,"Idle.update","Peppino.hx",197,0x23086929)
 
 void Idle_obj::__construct(){
-            	HX_STACKFRAME(&_hx_pos_11808598d1a4a54e_191_new)
-HXDLIN( 191)		super::__construct();
+            	HX_STACKFRAME(&_hx_pos_11808598d1a4a54e_188_new)
+HXDLIN( 188)		super::__construct();
             	}
 
 Dynamic Idle_obj::__CreateEmpty() { return new Idle_obj; }
@@ -79,40 +79,40 @@ bool Idle_obj::_hx_isInstanceOf(int inClassId) {
 }
 
 void Idle_obj::enter( ::Dynamic _tmp_peppino, ::flixel::addons::util::FlxFSM _tmp_fsm){
-            	HX_STACKFRAME(&_hx_pos_11808598d1a4a54e_194_enter)
-HXLINE( 195)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
-HXDLIN( 195)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
-HXDLIN( 195)		peppino->changeState(::States_obj::STAND_dyn());
-HXLINE( 196)		peppino->playAnim(HX_("idle",14,a7,b3,45),null());
+            	HX_STACKFRAME(&_hx_pos_11808598d1a4a54e_191_enter)
+HXLINE( 192)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
+HXDLIN( 192)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
+HXDLIN( 192)		peppino->changeState(::States_obj::STAND_dyn());
+HXLINE( 193)		peppino->playAnim(HX_("idle",14,a7,b3,45),null());
             	}
 
 
 void Idle_obj::update(Float elapsed, ::Dynamic _tmp_peppino, ::flixel::addons::util::FlxFSM _tmp_fsm){
-            	HX_STACKFRAME(&_hx_pos_11808598d1a4a54e_200_update)
-HXLINE( 201)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
-HXDLIN( 201)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
-HXDLIN( 201)		int speed = 825;
-HXLINE( 203)		peppino->walkMovement();
-HXLINE( 205)		bool _hx_tmp;
-HXDLIN( 205)		if ((::Math_obj::abs(peppino->velocity->x) > 0)) {
-HXLINE( 205)			_hx_tmp = (peppino->animation->_curAnim->name != HX_("walk",09,5d,f2,4e));
+            	HX_STACKFRAME(&_hx_pos_11808598d1a4a54e_197_update)
+HXLINE( 198)		 ::Peppino peppino = ( ( ::Peppino)(_tmp_peppino) );
+HXDLIN( 198)		 ::flixel::addons::util::FlxFSM fsm = _tmp_fsm;
+HXDLIN( 198)		int speed = 825;
+HXLINE( 200)		peppino->walkMovement();
+HXLINE( 202)		bool _hx_tmp;
+HXDLIN( 202)		if ((::Math_obj::abs(peppino->velocity->x) > 0)) {
+HXLINE( 202)			_hx_tmp = (peppino->animation->_curAnim->name != HX_("walk",09,5d,f2,4e));
             		}
             		else {
-HXLINE( 205)			_hx_tmp = false;
+HXLINE( 202)			_hx_tmp = false;
             		}
-HXDLIN( 205)		if (_hx_tmp) {
-HXLINE( 206)			peppino->playAnim(HX_("walk",09,5d,f2,4e),null());
+HXDLIN( 202)		if (_hx_tmp) {
+HXLINE( 203)			peppino->playAnim(HX_("walk",09,5d,f2,4e),null());
             		}
             		else {
-HXLINE( 207)			bool _hx_tmp;
-HXDLIN( 207)			if ((::Math_obj::abs(peppino->velocity->x) == 0)) {
-HXLINE( 207)				_hx_tmp = !(::StringTools_obj::startsWith(peppino->animation->_curAnim->name,HX_("idle",14,a7,b3,45)));
+HXLINE( 204)			bool _hx_tmp;
+HXDLIN( 204)			if ((::Math_obj::abs(peppino->velocity->x) == 0)) {
+HXLINE( 204)				_hx_tmp = !(::StringTools_obj::startsWith(peppino->animation->_curAnim->name,HX_("idle",14,a7,b3,45)));
             			}
             			else {
-HXLINE( 207)				_hx_tmp = false;
+HXLINE( 204)				_hx_tmp = false;
             			}
-HXDLIN( 207)			if (_hx_tmp) {
-HXLINE( 208)				peppino->playAnim(HX_("idle",14,a7,b3,45),null());
+HXDLIN( 204)			if (_hx_tmp) {
+HXLINE( 205)				peppino->playAnim(HX_("idle",14,a7,b3,45),null());
             			}
             		}
             	}

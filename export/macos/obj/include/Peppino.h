@@ -71,9 +71,6 @@ class HXCPP_CLASS_ATTRIBUTES Peppino_obj : public  ::flixel::FlxSprite_obj
 		 ::Dynamic getMovementType();
 		::Dynamic getMovementType_dyn();
 
-		::String getMachAnimation();
-		::Dynamic getMachAnimation_dyn();
-
 		int getMachSpeed();
 		::Dynamic getMachSpeed_dyn();
 

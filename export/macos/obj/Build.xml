@@ -9065,9 +9065,7 @@
    <depend name="include/flixel/animation/FlxAnimation.h"/>
    <depend name="include/flixel/animation/FlxAnimationController.h"/>
    <depend name="include/flixel/animation/FlxBaseAnimation.h"/>
-   <depend name="include/flixel/math/FlxBasePoint.h"/>
    <depend name="include/flixel/util/IFlxDestroyable.h"/>
-   <depend name="include/flixel/util/IFlxPooled.h"/>
   </file>
   <file name="src/Fall.cpp" >
    <depend name="include/Fall.h"/>
