@@ -34,14 +34,22 @@ class AssetPaths
 		return 'assets/data/$key.hx';
 	}
 
-	public static inline function data(key:String):String
+	public static inline function data(key:String, ?ext:String = 'json'):String
 	{
-		return 'assets/data/$key.json';
+		return 'assets/data/$key.$ext';
 	}
 
-	public static inline function map(key:String):String
+	public static inline function map(key:String, ?ext:String = 'ogmo'):String
 	{
-		return '$key.tmx';
+		return 'assets/data/$key/map.$ext';
+	}
+
+	public static inline function tileset(key:String, ?key2:String):String
+	{
+		if (key2 != null)
+			return 'assets/data/$key/tilesets/$key2.png';
+
+		return 'assets/data/$key.png';
 	}
 
 	public static inline function room(key:String):String
@@ -91,7 +99,9 @@ class AssetPaths
 
 	public static function gmlSprite(key:String):FlxAtlasFrames
 	{
-		var atlas:FlxAtlas = new FlxAtlas('theatlasever');
+		var minSize:FlxPoint = new FlxPoint(0, 0);
+		var maxSize:FlxPoint = new FlxPoint(2048 * 3, 2048 * 3);
+		var atlas:FlxAtlas = new FlxAtlas('theatlasever', false, 0, minSize, maxSize);
 		var list = Assets.list();
 
 		var all_files = list.filter(folder -> folder.startsWith('$key/spr_'));
@@ -132,7 +142,6 @@ class AssetPaths
 				}
 			}
 		}
-
 		return atlas.getAtlasFrames();
 	}
 	/*public static function fromSparrow(folderPath:FlxXmlAsset):FlxAtlasFrames

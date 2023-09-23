@@ -3,6 +3,7 @@
         "spr_player_idle",
         "spr_player_move",
         "spr_player_jump",
+        "spr_player_land",
 
         "spr_player_mach1",
         "spr_player_mach",
@@ -12,6 +13,10 @@
         "spr_player_machslidestart",
         "spr_player_machslideend",
 
-        "spr_player_secondjump1"
+        "spr_player_machslideboost3",
+        "spr_player_machslideboost3fall",
+
+        "spr_player_secondjump1",
+        "spr_player_secondjump2"
     ]
 }
