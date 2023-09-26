@@ -17,6 +17,16 @@
         "spr_player_machslideboost3fall",
 
         "spr_player_secondjump1",
-        "spr_player_secondjump2"
+        "spr_player_secondjump2",
+    
+        "spr_player_superjumpprep",
+        "spr_player_superjumppreplight",
+        "spr_player_superjumpleft",
+        "spr_player_superjumpright",
+
+        "spr_player_superjump",
+
+        "spr_player_Sjumpcancelstart",
+        "spr_player_Sjumpcancel"
     ]
 }

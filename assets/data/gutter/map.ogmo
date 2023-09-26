@@ -2,7 +2,7 @@
   "name": "Map",
   "ogmoVersion": "3.4.0",
   "levelPaths": ["."],
-  "backgroundColor": "#282c34ff",
+  "backgroundColor": "#282c3400",
   "gridColor": "#3c4049cc",
   "anglesRadians": true,
   "directoryDepth": 5,
@@ -40,7 +40,7 @@
       "gridSize": {"x": 32, "y": 32},
       "exportID": "46556176",
       "exportMode": 0,
-      "arrayMode": 0,
+      "arrayMode": 1,
       "defaultTileset": "tower"
     }
   ],

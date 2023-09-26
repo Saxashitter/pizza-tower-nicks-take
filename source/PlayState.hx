@@ -1,6 +1,7 @@
 package;
 
 import Peppino;
+import flixel.FlxCamera.FlxCameraFollowStyle;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -39,53 +40,28 @@ class PlayState extends FlxState
 		collision.visible = false;
 		add(stage);
 
-		add(peppino = new Peppino(0, 0));
+		var spawn = {x: 0, y: 0};
+		loader.loadEntities((entity) ->
+		{
+			if (entity.name == 'Spawn')
+			{
+				spawn.x = entity.x;
+				spawn.y = entity.y - 60;
+				trace(entity.x, entity.y);
+			}
+		}, "spawns");
+
+		peppino = new Peppino(spawn.x, spawn.y);
+		add(peppino);
 
 		FlxG.worldBounds.set(0, 0, collision.width, collision.height);
-
-		FlxG.camera.follow(peppino);
-		FlxG.camera.followLerp = 15 / FlxG.updateFramerate;
-
-		var northwest:Array<Int> = [];
-		var northeast:Array<Int> = [];
-		var southwest:Array<Int> = [];
-		var southeast:Array<Int> = [];
-
-		for (i in 0...collision.totalTiles)
-		{
-			var tile = collision.getTileByIndex(i);
-
-			if (tile == 15)
-				northwest.push(tile);
-
-			if (tile == 14)
-				northeast.push(tile);
-		}
-
-		collision.setSlopes(northwest, northeast, southwest, southeast);
-		collision.setDownwardsGlue(true);
+		// FlxG.camera.setScrollBounds(0, stage.width, 0, stage.height);
+		FlxG.camera.follow(peppino, FlxCameraFollowStyle.LOCKON, 1.2);
 	}
 
 	override public function update(elapsed:Float)
 	{
-		FlxG.overlap(collision, peppino, null, (_, _) ->
-		{
-			var return_val = FlxObject.separate(collision, peppino);
-
-			if (!return_val)
-			{
-				var tile = collision.getTileIndexByCoords(new FlxPoint(peppino.getMidpoint().x, peppino.y + peppino.height + 2));
-
-				if (tile == 15)
-				{
-					peppino.y = collision.getTileCoordsByIndex(tile).y;
-					return_val = true;
-					trace('SLOPEEEE');
-				}
-			}
-
-			return return_val;
-		});
+		FlxG.collide(collision, peppino);
 		super.update(elapsed);
 	}
 }

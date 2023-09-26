@@ -3,6 +3,7 @@ package;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.util.FlxFSM;
+import flixel.input.gamepad.lists.FlxGamepadPointerValueList;
 
 using StringTools;
 
@@ -13,22 +14,28 @@ enum States
 	FALL;
 	MACH;
 	SKID;
+	DRIFT;
+	SUPER_JUMP;
 }
 
 class Peppino extends FlxSprite
 {
 	var fsm:FlxFSM<Peppino>;
 
-	public var movespeed:Float = 350; // FOR MACH
+	public var movespeed:Float = 0.5; // FOR MACH
 
-	var maxMachVelo:Float = 1400;
+	var maxMachVelo:Float = 35;
 
 	public var machrunning:Bool = false;
 
 	public var curState = States.STAND;
 	public var prevState = States.STAND;
 
-	var hasTransitioned:Bool = true;
+	public var abletoFlipSprite:Bool = true;
+
+	public var hasTransitioned:Bool = false;
+
+	public var daAccel:Float = 0.25;
 
 	public function changeState(state:States)
 	{
@@ -47,6 +54,7 @@ class Peppino extends FlxSprite
 		// the rest arent really loaded because flxatlasframes has a limit and is kept in sprites.json instead
 		animation.addByPrefix('idle//transition-$SKID', 'spr_player_machslideend', 24, false);
 		animation.addByPrefix('idle//transition-$FALL', 'spr_player_land', 24, false);
+		animation.addByPrefix('idle//transition-$SUPER_JUMP', 'spr_player_land', 24, false);
 		animation.addByPrefix('idle_', 'spr_player_idle_', 24);
 
 		animation.addByPrefix('walk', 'spr_player_move', 24);
@@ -68,6 +76,16 @@ class Peppino extends FlxSprite
 		animation.addByPrefix('mach_drift//transition_', 'spr_player_machslideboost3_', 24, false);
 		animation.addByPrefix('mach_drift', 'spr_player_machslideboost3fall', 24);
 
+		animation.addByPrefix('superjump_prep//transition_', 'spr_player_superjumpprep_', 24, false);
+		animation.addByPrefix('superjump_prep_', 'spr_player_superjumppreplight', 24);
+		animation.addByPrefix('superjump_prep_left', 'spr_player_superjumpleft', 24);
+		animation.addByPrefix('superjump_prep_right', 'spr_player_superjumpright', 24);
+
+		animation.addByPrefix('superjump_', 'spr_player_superjump_', 24);
+
+		animation.addByPrefix('superjump_cancel_startup', 'spr_player_Sjumpcancelstart', 24, false);
+		animation.addByPrefix('superjump_cancel', 'spr_player_Sjumpcancel_', 24);
+
 		width = 37;
 		height = 60;
 
@@ -75,9 +93,9 @@ class Peppino extends FlxSprite
 
 		// animation.play('idle');
 
-		maxVelocity.x = 250;
+		maxVelocity.x = 15;
 		drag.x = maxVelocity.x * 4;
-		acceleration.y = 900;
+		acceleration.y = daAccel;
 
 		animation.finishCallback = (name:String) ->
 		{
@@ -99,29 +117,29 @@ class Peppino extends FlxSprite
 		fsm.transitions.add(Fall, Idle, (_) -> isTouching(DOWN) && !machrunning);
 		fsm.transitions.add(Fall, Mach, (_) -> isTouching(DOWN) && machrunning);
 
-		fsm.transitions.add(Mach, Skid, (_) -> FlxG.keys.released.SHIFT && isTouching(DOWN));
-		fsm.transitions.add(Mach, Jump, (_) -> FlxG.keys.justPressed.SPACE && isTouching(DOWN));
-		fsm.transitions.add(Mach, Fall, (_) -> !isTouching(DOWN));
-
-		fsm.transitions.add(Skid, Idle, (_) -> movespeed <= 120);
-
 		fsm.transitions.start(Idle);
 	}
 
 	public override function update(elapsed:Float)
 	{
-		fsm.update(elapsed);
-		super.update(elapsed);
-
-		if (velocity.x < 0 && !flipX)
-			flipX = true;
-		else if (velocity.x > 0 && flipX)
-			flipX = false;
+		if (abletoFlipSprite)
+			if (velocity.x < 0 && !flipX)
+				flipX = true;
+			else if (velocity.x > 0 && flipX)
+				flipX = false;
 
 		if (!flipX)
 			offset.x = 27;
 		else
 			offset.x = 35;
+
+		if (velocity.y > 0)
+			acceleration.y = daAccel * 2;
+		else
+			acceleration.y = daAccel;
+
+		fsm.update(elapsed);
+		super.update(elapsed);
 	}
 
 	public function playAnim(animationName:String, ?force:Bool = false)
@@ -154,7 +172,7 @@ class Peppino extends FlxSprite
 	// MOVEMENT CODE
 	public function walkMovement()
 	{
-		final speed = 825;
+		final speed = 2;
 		if (FlxG.keys.pressed.A)
 			acceleration.x = -speed;
 		else if (FlxG.keys.pressed.D)
@@ -177,19 +195,39 @@ class Peppino extends FlxSprite
 			return walkMovement;
 	}
 
-	public function getMachSpeed()
+	public function getMachSpeed(val:Int = 0):Float
 	{
-		if (movespeed > 600)
-			return 1;
+		switch (val)
+		{
+			default:
+				if (movespeed >= 20)
+					return 2;
+				else if (movespeed >= 8)
+					return 1;
 
-		return 0;
+				return 0;
+			case 1:
+				if (movespeed >= 20)
+					return 20;
+				else if (movespeed >= 8)
+					return 8;
+
+				return 0;
+			case 2:
+				if (movespeed >= 20)
+					return 0.025;
+				else if (movespeed >= 8)
+					return 0.1;
+
+				return 0.75;
+		}
 	}
 
 	public function machMovement()
 	{
 		if (isTouching(DOWN))
 			if (movespeed < maxMachVelo)
-				movespeed += 10;
+				movespeed += 0.075;
 
 		var turn = (flipX ? -1 : 1);
 		velocity.x = movespeed * turn;
@@ -224,7 +262,7 @@ class Jump extends FlxFSMState<Peppino>
 	override function enter(peppino:Peppino, fsm:FlxFSM<Peppino>)
 	{
 		peppino.changeState(JUMP);
-		peppino.velocity.y = -475;
+		peppino.velocity.y = -4;
 
 		if (!peppino.machrunning)
 			peppino.playAnim('jump');
@@ -267,48 +305,5 @@ class Fall extends FlxFSMState<Peppino>
 	{
 		var movement = peppino.getMovementType();
 		movement();
-	}
-}
-
-class Mach extends FlxFSMState<Peppino>
-{
-	override function enter(peppino:Peppino, fsm:FlxFSM<Peppino>)
-	{
-		peppino.changeState(MACH);
-		peppino.machrunning = true;
-		peppino.playAnim('mach_1');
-	}
-
-	override function update(elapsed:Float, peppino:Peppino, fsm:FlxFSM<Peppino>)
-	{
-		peppino.machMovement();
-		if (peppino.getMachSpeed() == 1 && peppino.animation.curAnim.name != 'mach_2')
-			peppino.playAnim('mach_2');
-	}
-
-	override function exit(peppino:Peppino) {}
-}
-
-class Skid extends FlxFSMState<Peppino>
-{
-	override function enter(peppino:Peppino, fsm:FlxFSM<Peppino>)
-	{
-		peppino.machrunning = false;
-
-		peppino.changeState(SKID);
-		peppino.playAnim('mach_stop');
-	}
-
-	override function update(elapsed:Float, peppino:Peppino, fsm:FlxFSM<Peppino>)
-	{
-		peppino.movespeed -= 30;
-		var turn = peppino.flipX ? -1 : 1;
-		peppino.velocity.x = peppino.movespeed * turn;
-	}
-
-	override function exit(peppino:Peppino)
-	{
-		peppino.movespeed = 350;
-		peppino.velocity.x = 0;
 	}
 }
